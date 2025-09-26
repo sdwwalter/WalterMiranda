@@ -8,7 +8,15 @@
 body {
     font-family: 'Poppins', sans-serif;
     color: #f0f0f0; /* Cor do texto geral mais clara para fundo escuro */
-    background: linear-gradient(135deg, #1a2a3a, #00121d); /* Fundo escuro com gradiente */
+
+    /* === NOVAS CONFIGURAÇÕES DE BACKGROUND DA IMAGEM === */
+    background-image: url('https://raw.githubusercontent.com/sdwwalter/WalterMiranda/refs/heads/main/1756656007713.jpg'); /* Sua imagem */
+    background-size: cover; /* Garante que a imagem cubra toda a área */
+    background-position: center center; /* Centraliza a imagem */
+    background-repeat: no-repeat; /* Evita repetição da imagem */
+    background-attachment: fixed; /* Opcional: mantém a imagem fixa ao rolar */
+    /* ================================================= */
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,7 +30,8 @@ body {
 .card-container {
     max-width: 700px;
     width: 100%;
-    background: rgba(10, 20, 30, 0.7); /* Fundo semi-transparente escuro */
+    /* Mantive o background semi-transparente escuro para contraste com a imagem */
+    background: rgba(10, 20, 30, 0.85); /* Aumentei um pouco a opacidade para garantir a leitura */
     backdrop-filter: blur(8px); /* Efeito blur para profundidade */
     border-radius: 20px;
     padding: 40px;
@@ -32,7 +41,8 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
 }
 
-/* --- Cabeçalho e Apresentação (Hero-like) --- */
+/* --- O restante do seu código CSS permanece inalterado --- */
+
 .profile {
     margin-bottom: 30px;
 }
