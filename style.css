@@ -1,221 +1,285 @@
+/* --- Variáveis de tema (fácil ajuste) --- */
+:root{
+  --bg-deep-1: #0D1B2A;    /* fundo mais profundo */
+  --bg-deep-2: #001219;
+  --emerald: #00E6B8;      /* verde principal (tom base) */
+  --emerald-bright: #00FFD1; /* brilho para hover */
+  --gold: #D4AF37;         /* dourado principal */
+  --gold-warm: #FFD700;    /* dourado quente para detalhes */
+  --text-primary: #f0f0f0;
+  --text-secondary: #d0d0d0;
+  --card-bg: rgba(10, 20, 30, 0.75);
+}
+
 /* --- Reset Básico e Configurações Globais --- */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    color: #f0f0f0; /* Cor do texto geral mais clara para fundo escuro */
-
-    /* === NOVAS CONFIGURAÇÕES DE BACKGROUND DA IMAGEM === */
-    background-image: url('https://raw.githubusercontent.com/sdwwalter/WalterMiranda/refs/heads/main/1756656007713.jpg'); /* Sua imagem */
-    background-size: cover; /* Garante que a imagem cubra toda a área */
-    background-position: center center; /* Centraliza a imagem */
-    background-repeat: no-repeat; /* Evita repetição da imagem */
-    background-attachment: fixed; /* Opcional: mantém a imagem fixa ao rolar */
-    /* ================================================= */
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    position: relative;
-    overflow-x: hidden; /* Evita scroll horizontal em mobile */
+  font-family: 'Poppins', sans-serif;
+  color: var(--text-primary);
+  /* gradiente de fundo + imagem transparente por cima */
+  background-image:
+    url("https://raw.githubusercontent.com/sdwwalter/WalterMiranda/refs/heads/main/1756656007713.jpg"),
+    linear-gradient(135deg, var(--bg-deep-1), var(--bg-deep-2));
+  background-repeat: no-repeat, no-repeat;
+  /* imagem posicionada à direita para não ficar atrás do conteúdo central;
+     gradient cobre toda a tela */
+  background-position: right 18% center, center;
+  background-size: 420px auto, cover; /* 1ª: imagem, 2ª: gradiente */
+  background-attachment: fixed, fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Container Principal (Mais integrado ao fundo) --- */
+/* Sombra sutil sobre o background (melhora contraste) */
+body::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.45) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* --- Container Principal --- */
 .card-container {
-    max-width: 700px;
-    width: 100%;
-    /* Mantive o background semi-transparente escuro para contraste com a imagem */
-    background: rgba(10, 20, 30, 0.85); /* Aumentei um pouco a opacidade para garantir a leitura */
-    backdrop-filter: blur(8px); /* Efeito blur para profundidade */
-    border-radius: 20px;
-    padding: 40px;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
-    text-align: center;
-    z-index: 2;
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Borda sutil */
+  max-width: 700px;
+  width: 100%;
+  background: var(--card-bg); /* permanece semi-transparente */
+  backdrop-filter: blur(8px) saturate(110%);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.6), 0 6px 18px rgba(0,0,0,0.35);
+  text-align: center;
+  z-index: 2; /* acima do overlay do body */
+  border: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
 }
 
-/* --- O restante do seu código CSS permanece inalterado --- */
+/* Se quiser a imagem de fundo levemente visível dentro do card (opcional)
+   — descomente para efeito watermark interno */
+/*
+.card-container::before{
+  content: "";
+  position: absolute;
+  inset: -10% -20% auto auto;
+  width: 380px;
+  height: 380px;
+  background-image: url("https://raw.githubusercontent.com/sdwwalter/WalterMiranda/refs/heads/main/1756656007713.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0.06;
+  z-index: 0;
+}
+*/
 
+/* --- Cabeçalho e Apresentação --- */
 .profile {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 3;
 }
 
+/* Logo container (usar imagem como referência dentro do círculo) */
 .profile .logo-container {
-    width: 130px;
-    height: 130px;
-    margin: 0 auto 25px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 5px solid #D4AF37; /* Dourado em destaque */
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+  width: 130px;
+  height: 130px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--gold);
+  box-shadow: 0 6px 20px rgba(212,175,55,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.12));
 }
 
+/* caso a imagem tenha transparência, esse fundo aparece por trás da imagem */
+.profile .logo-container::after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 20%, rgba(255,215,130,0.04), rgba(0,0,0,0.12));
+  pointer-events: none;
+}
+
+/* A imagem dentro da logo: centralizada, mantendo proporção */
 .profile .logo {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
+  display: block;
+  z-index: 3;
 }
 
+/* Nome e títulos */
 .profile h1 {
-    font-size: 2.8rem; /* Título maior */
-    font-weight: 700;
-    color: #fff; /* Nome em branco puro */
-    margin-bottom: 5px;
-    letter-spacing: 0.5px;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 6px;
+  letter-spacing: 0.4px;
 }
 
 .profile .title {
-    font-size: 1.3rem;
-    font-weight: 500;
-    color: #00E6B8; /* Verde esmeralda mais vibrante */
-    margin-top: 10px;
-    line-height: 1.4;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--emerald);
+  margin-top: 6px;
+  line-height: 1.3;
 }
 
 .profile .description {
-    font-size: 1rem;
-    font-weight: 300;
-    margin: 30px auto 40px;
-    line-height: 1.7;
-    color: #b0b0b0; /* Cinza claro para descrição */
-    max-width: 550px;
+  font-size: 0.98rem;
+  font-weight: 300;
+  margin: 22px auto 34px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 560px;
 }
 
 /* --- Botões de Links --- */
 .links {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  z-index: 3;
 }
 
 .link-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px 30px;
-    background: linear-gradient(90deg, #00E6B8, #00B89C); /* Gradiente de verde esmeralda */
-    color: #1a2a3a; /* Cor do texto no botão escura para contraste */
-    text-decoration: none;
-    font-size: 1.2rem;
-    font-weight: 600;
-    border-radius: 12px; /* Cantos mais suaves, menos arredondados que antes */
-    box-shadow: 0 6px 20px rgba(0, 230, 184, 0.3);
-    transition: all 0.3s ease;
-    border: none;
-    letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 28px;
+  background: linear-gradient(90deg, var(--emerald), #00B89C);
+  color: #0b1a20;
+  text-decoration: none;
+  font-size: 1.12rem;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,230,184,0.12), 0 3px 10px rgba(0,0,0,0.35);
+  transition: transform .28s ease, box-shadow .28s ease, background .28s ease;
+  border: none;
+  letter-spacing: 0.4px;
+  cursor: pointer;
 }
 
 .link-button i {
-    margin-right: 15px;
-    font-size: 1.5rem;
-    color: #1a2a3a; /* Ícone também escuro */
+  margin-right: 12px;
+  font-size: 1.4rem;
+  color: #0b1a20;
 }
 
-/* Efeito Hover (Animação com brilho e leve aumento) */
+/* Hover com brilho elegante */
 .link-button:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(0, 230, 184, 0.5);
-    background: linear-gradient(90deg, #00B89C, #009C7F); /* Gradiente mais escuro no hover */
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 45px rgba(0,255,209,0.12);
+  background: linear-gradient(90deg, var(--emerald-bright), #00CFA9);
 }
 
 /* --- Rodapé --- */
 .footer {
-    margin-top: 50px;
+  margin-top: 40px;
+  z-index: 3;
 }
 
 .footer .impact-phrase {
-    font-style: italic;
-    color: #888;
-    font-size: 1rem;
-    margin-bottom: 20px;
+  font-style: italic;
+  color: #9b9b9b;
+  font-size: 0.98rem;
+  margin-bottom: 16px;
 }
 
 .footer .creci {
-    font-weight: 600;
-    color: #D4AF37; /* Dourado */
-    background-color: rgba(212, 175, 55, 0.15); /* Fundo dourado suave */
-    padding: 8px 15px;
-    border-radius: 10px;
-    display: inline-block;
-    margin-bottom: 25px;
-    letter-spacing: 0.8px;
+  font-weight: 700;
+  color: var(--gold);
+  background-color: rgba(212,175,55,0.12);
+  padding: 8px 14px;
+  border-radius: 10px;
+  display: inline-block;
+  margin-bottom: 18px;
+  letter-spacing: 0.8px;
 }
 
 .footer .social-icons {
-    display: flex;
-    justify-content: center;
-    gap: 25px; /* Mais espaço entre os ícones */
+  display: flex;
+  justify-content: center;
+  gap: 22px;
 }
 
 .social-icons a {
-    color: #b0b0b0; /* Ícones sociais em cinza claro */
-    font-size: 2.2rem; /* Ícones maiores */
-    transition: color 0.3s ease, transform 0.3s ease;
+  color: var(--text-secondary);
+  font-size: 2rem;
+  transition: color .25s ease, transform .25s ease;
 }
 
 .social-icons a:hover {
-    color: #00E6B8; /* Verde esmeralda no hover */
-    transform: translateY(-3px) scale(1.15);
+  color: var(--emerald);
+  transform: translateY(-3px) scale(1.12);
 }
 
 /* --- Responsividade (Mobile) --- */
+@media (max-width: 1024px){
+  body{
+    background-position: right 6% center, center;
+    background-size: 360px auto, cover;
+  }
+  .card-container{ padding: 36px; border-radius: 18px; }
+}
+
 @media (max-width: 768px) {
-    body {
-        padding: 15px;
-    }
+  body {
+    padding: 15px;
+    background-position: center top, center;
+    background-size: 48% auto, cover; /* a imagem fica mais central para mobile */
+  }
 
-    .card-container {
-        padding: 30px 20px;
-        border-radius: 15px;
-    }
+  .card-container {
+    padding: 28px 18px;
+    border-radius: 14px;
+  }
 
-    .profile .logo-container {
-        width: 100px;
-        height: 100px;
-        margin-bottom: 20px;
-    }
+  .profile .logo-container {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 18px;
+    border-width: 3px;
+  }
 
-    .profile h1 {
-        font-size: 2.2rem;
-    }
+  .profile h1 { font-size: 2rem; }
+  .profile .title { font-size: 1rem; }
+  .profile .description { font-size: 0.9rem; margin: 20px auto 26px; }
 
-    .profile .title {
-        font-size: 1.1rem;
-    }
+  .link-button { padding: 14px 18px; font-size: 1rem; }
+  .link-button i { font-size: 1.2rem; margin-right: 10px; }
 
-    .profile .description {
-        font-size: 0.9rem;
-        margin: 25px auto 30px;
-    }
+  .footer .impact-phrase { font-size: 0.85rem; }
+  .footer .creci { font-size: 0.88rem; padding: 6px 10px; }
+  .social-icons a { font-size: 1.6rem; gap: 12px; }
+}
 
-    .link-button {
-        padding: 16px 20px;
-        font-size: 1.05rem;
-    }
-
-    .link-button i {
-        font-size: 1.3rem;
-        margin-right: 10px;
-    }
-
-    .footer .impact-phrase {
-        font-size: 0.85rem;
-    }
-
-    .footer .creci {
-        font-size: 0.9rem;
-        padding: 6px 12px;
-    }
-
-    .social-icons a {
-        font-size: 1.8rem;
-        margin: 0 10px;
-    }
+/* --- Acessibilidade: foco visível --- */
+.link-button:focus {
+  outline: 3px solid rgba(0,230,184,0.14);
+  outline-offset: 3px;
+  box-shadow: 0 8px 30px rgba(0,230,184,0.12);
 }
