@@ -131,8 +131,15 @@ body::after{
   body{ background-position: right 6% center, center; background-size: 360px auto, cover; }
   .card-container{ padding: 36px; border-radius: 18px; }
 }
+
+/* === SEÇÃO MODIFICADA PARA MELHOR RESPONSIVIDADE === */
 @media (max-width: 768px) {
-  body { padding: 15px; background-position: center top, center; background-size: 48% auto, cover; }
+  body { 
+    padding: 30px 15px; /* Adiciona mais espaço vertical */
+    background-position: center top, center; /* Posiciona a imagem no topo */
+    background-size: 60% auto, cover; /* Ajusta o tamanho da imagem de fundo */
+    align-items: flex-start; /* <<< Chave da correção: Alinha o card no topo */
+  }
   .card-container { padding: 24px 16px; border-radius: 14px; }
   .profile .logo-container { width: 100px; height: 100px; margin-bottom: 16px; border-width: 3px; }
   .profile h1 { font-size: 1.9rem; }
@@ -143,4 +150,4 @@ body::after{
   .footer .impact-phrase { font-size: 0.85rem; }
   .footer .creci { font-size: 0.88rem; padding: 6px 10px; }
   .social-icons a { font-size: 1.6rem; gap: 12px; }
-  }
+}
