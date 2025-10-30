@@ -55,7 +55,7 @@ body::after{
   z-index: 1;
 }
 
-/* Card */
+/* Card Principal (Reutilizado na página de mentoria) */
 .card-container {
   max-width: 700px;
   width: 100%;
@@ -93,7 +93,7 @@ body::after{
   padding: 0 6px; text-align: center;
 }
 
-/* Botões (balões) — mantidos */
+/* Botões (balões) — Padrão Esmeralda */
 .links { display: flex; flex-direction: column; gap: 18px; z-index: 3; }
 .link-button {
   display: flex; align-items: center; justify-content: center;
@@ -127,7 +127,7 @@ body::after{
 .social-icons a { color: var(--text-secondary); font-size: 2rem; transition: color .25s ease, transform .25s ease; }
 .social-icons a:hover { color: var(--moss); transform: translateY(-3px) scale(1.12); }
 
-/* Responsividade */
+/* Responsividade Padrão */
 @media (max-width: 1024px){
   body{ background-position: right 6% center, center; background-size: 360px auto, cover; }
   .card-container{ padding: 36px; border-radius: 18px; }
@@ -149,4 +149,124 @@ body::after{
   .footer .impact-phrase { font-size: 0.85rem; }
   .footer .creci { font-size: 0.88rem; padding: 6px 10px; }
   .social-icons a { font-size: 1.6rem; gap: 12px; }
+}
+
+
+/* =========================
+   ESTILOS ESPECÍFICOS PARA MENTORIA (index.html e mentoria.html)
+   ========================= */
+
+/* 1. Estilo para o botão de Mentoria na página principal (index.html) - DESTAQUE DOURADO */
+.link-button.mentoria-destaque {
+  /* Substitui o gradiente padrão verde esmeralda por um dourado mais quente */
+  background: linear-gradient(90deg, var(--gold-warm), var(--gold));
+  color: var(--bg-deep-1); /* Texto escuro para contrastar com o dourado */
+  font-size: 1.15rem;
+  padding: 20px 28px; /* Um pouco maior para destaque */
+  border: 2px solid var(--gold-warm);
+  box-shadow: 0 10px 35px rgba(255,215,0,0.25), 0 4px 15px rgba(0,0,0,0.4);
+}
+
+.link-button.mentoria-destaque i { 
+    color: var(--bg-deep-1); 
+    font-size: 1.5rem; /* Ícone levemente maior */
+}
+
+.link-button.mentoria-destaque:hover {
+  transform: translateY(-8px) scale(1.03); /* Efeito de destaque maior */
+  box-shadow: 0 20px 50px rgba(255,215,0,0.35);
+  background: linear-gradient(90deg, #FFF0B8, var(--gold-warm));
+}
+
+/* 2. Estilo para o Contêiner na página auxiliar (mentoria.html) - Reutiliza a base do card */
+.card-container-mentoria {
+    max-width: 400px;
+    width: 100%;
+    /* Reutiliza as cores e blur do card principal */
+    background: var(--card-bg);
+    backdrop-filter: blur(8px) saturate(110%);
+    border-radius: 20px;
+    padding: 30px; 
+    box-shadow: 0 18px 60px rgba(0,0,0,0.6), 0 6px 18px rgba(0,0,0,0.35);
+    text-align: center;
+    z-index: 2;
+    border: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+    margin: 50px auto; /* Centraliza no corpo */
+}
+
+/* 3. Estilos de Conteúdo da Mentoria (para mentoria.html) */
+.mentoria-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    height: auto;
+    border: 3px solid var(--moss-dark);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+}
+
+.mentoria-title {
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.mentoria-description {
+    color: var(--text-secondary);
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+/* Botão de WhatsApp Específico para a página de Mentoria (Verde de WhatsApp) */
+.link-button-whatsapp-mentoria {
+    /* Baseia-se no link-button, mas com cor do WhatsApp */
+    display: flex; align-items: center; justify-content: center;
+    padding: 18px 28px;
+    background: #25d366; 
+    color: white; 
+    text-decoration: none;
+    font-size: 1.12rem; font-weight: 600;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(37,211,102,0.25), 0 3px 10px rgba(0,0,0,0.35);
+    transition: transform .28s ease, box-shadow .28s ease, background-color .28s ease;
+    border: none; letter-spacing: 0.4px; cursor: pointer;
+}
+
+.link-button-whatsapp-mentoria i { 
+    margin-right: 12px; font-size: 1.4rem; color: white;
+}
+
+.link-button-whatsapp-mentoria:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(37,211,102,0.4);
+    background-color: #128c7e;
+}
+
+/* Estilo para o botão Voltar na página de Mentoria */
+.link-button.link-button-back {
+    margin-top: 15px;
+    background: var(--moss-dark); /* Cor escura do tema */
+    font-size: 0.95rem;
+    padding: 14px 20px;
+    color: var(--text-primary);
+}
+
+.link-button.link-button-back:hover {
+    background: var(--moss);
+    transform: translateY(-3px) scale(1.01);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* Responsividade para o Card Auxiliar */
+@media (max-width: 768px) {
+    .card-container-mentoria { 
+        max-width: 100%; /* Ocupa a largura total em mobile */
+        margin: 20px 15px;
+        padding: 20px;
+    }
+    .mentoria-title { font-size: 1.4rem; }
+    .mentoria-description { font-size: 0.85rem; }
 }
