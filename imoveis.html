@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Imóveis Disponíveis – Walter Miranda</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+  <div class="card-container">
+    <h1 class="mentoria-title">🏡 Imóveis Disponíveis</h1>
+    <p class="mentoria-description">Confira as melhores oportunidades disponíveis agora. Filtre por cidade, número de quartos e faixa de preço.</p>
+
+    <section class="filters" aria-label="Filtrar imóveis">
+      <select id="filter-city" aria-label="Filtrar por cidade">
+        <option value="">Todas as cidades</option>
+      </select>
+
+      <select id="filter-bedrooms" aria-label="Filtrar por quartos">
+        <option value="">Qualquer número de quartos</option>
+        <option value="1">1 quarto</option>
+        <option value="2">2 quartos</option>
+        <option value="3">3 quartos</option>
+        <option value="4">4+ quartos</option>
+      </select>
+
+      <select id="filter-price" aria-label="Filtrar por preço">
+        <option value="">Qualquer preço</option>
+        <option value="0-200000">Até R$200.000</option>
+        <option value="200001-350000">R$200.001 a R$350.000</option>
+        <option value="350001-600000">R$350.001 a R$600.000</option>
+        <option value="600001-9999999">Acima de R$600.000</option>
+      </select>
+
+      <button id="btn-reset" class="link-button" style="padding:10px 14px; font-size:0.95rem;">Limpar filtros</button>
+    </section>
+
+    <section id="properties" class="property-grid" aria-live="polite"></section>
+
+    <a href="index.html" class="link-button link-button-back">
+      <i class="fas fa-arrow-left"></i> Voltar à Página Principal
+    </a>
+
+    <!-- Modal de detalhes -->
+    <div id="modal" class="modal" aria-hidden="true">
+      <div class="modal-content">
+        <button id="modal-close" class="modal-close" aria-label="Fechar">
+          <i class="fas fa-times"></i>
+        </button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
